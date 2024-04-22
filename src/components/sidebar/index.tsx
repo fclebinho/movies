@@ -1,15 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Navbar, NavbarItem } from "../navbar";
+import { useLocation } from "react-router-dom";
 
-// import { Container } from './styles';
+export const Sidebar: React.FC<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> = (props) => {
+  const location = useLocation();
 
-const Sidebar: React.FC = () => {
+  console.log("/", location.pathname.endsWith("/"));
+  console.log("movies", location.pathname.endsWith("movies"));
+
   return (
-    <div>
-      <Link to="/">Dashboard</Link>
-      <Link to="/movies">List</Link>
-    </div>
+    <Navbar {...props}>
+      <NavbarItem
+        active={location.pathname.endsWith("/")}
+        to="/"
+        data-testid="dashboard-link"
+      >
+        Dashboard
+      </NavbarItem>
+      <NavbarItem
+        active={location.pathname.endsWith("movies")}
+        to="/movies"
+        data-testid="movie-link"
+      >
+        List
+      </NavbarItem>
+    </Navbar>
   );
 };
-
-export default Sidebar;
