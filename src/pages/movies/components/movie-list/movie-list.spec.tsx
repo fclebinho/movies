@@ -49,11 +49,11 @@ describe("Movie List Page", () => {
 
     const tableRows = screen.getAllByRole("table-item");
 
-    expect(tableRows.length).toBe(6);
+    expect(tableRows.length).toBe(20);
   });
 
   it("Should have predefined values in the table", () => {
-    const movie: Movie = mock.paginatedMovies.items[0];
+    const movie: Movie = mock.paginatedMovies.content[0];
 
     render(
       <Wrapper>

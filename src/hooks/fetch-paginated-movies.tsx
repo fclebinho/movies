@@ -4,14 +4,14 @@ import { useSearchParams } from "react-router-dom";
 
 export const useFetchPaginatedMovies = (perPageCount: string) => {
   const [searchParams] = useSearchParams({
-    _page: "1",
-    _per_page: perPageCount,
+    page: "0",
+    size: perPageCount,
   });
 
   const year = searchParams.get("year");
   const winner = searchParams.get("winner");
-  const perPage = searchParams.get("_perPage");
-  const page = searchParams.get("_page");
+  const perPage = searchParams.get("size");
+  const page = searchParams.get("page");
 
   const { isPending, error, data } = useQuery({
     queryKey: ["movies", year, winner, perPage, page],

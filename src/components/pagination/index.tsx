@@ -26,8 +26,8 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const handlePageClick = (value: number) => {
     setSearchParams((state) => {
-      state.set("_page", String(value));
-      state.set("_per_page", String(perPage));
+      state.set("page", String(value));
+      state.set("size", String(perPage));
 
       return state;
     });
@@ -35,12 +35,12 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const setPageNumber = (page: number) =>
     setSearchParams((state) => {
-      state.set("_page", String(page));
+      state.set("page", String(page));
 
       return state;
     });
 
-  const getPageNumber = () => Number(searchParams.get("_page") ?? 1);
+  const getPageNumber = () => Number(searchParams.get("page") ?? 1);
 
   const handlePagePriorClick = () =>
     getPageNumber() > 1 && setPageNumber(getPageNumber() - 1);

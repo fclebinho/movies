@@ -15,11 +15,8 @@
 - Clone o projeto `git clone https://github.com/fclebinho/movies.git`
 - Configure o arquivo .env com endereço do serviço API e a quantidade de registros por páginas em caso de listagem.
 - Rode `npm i`
-- Rode `npm run api`
 - Rode `npm run dev`
 - Pronto 🎉
-
-> Para execução local contamos no ajuda do projeto [json-server](https://github.com/typicode/json-server) para criar os serviços a ser utilizado pela aplicação. Considerando que o serviço [ambiente de teste](https://tools.texoit.com/backend-java/api/movies) está inacessível.
 
 ### Como rodar os testes?
 
@@ -44,11 +41,3 @@ Abaixo estão listado as formas de executar os testes:
 - Todas as páginas do projeto estão listadas em `./src/pages`
   - Todos os `componentes` que representam as páginas estão em `./src/pages/**/components`
     - Uma vez dentro de uma página você pode ir navegando pelos componentes para ir se encontrando e fazer a alteração que deseja
-
-## API
-
-> Para o dados mockados da API deve ser modificado no arquivo db.json localizado na raiz do projeto.
-
-### Como usar?
-
-- Em dev, após rodar o projeto você deve executar o comando `npm run api` no qual subirá o serviço no endereço `http://localhost:3000` e esse endereço deve ser atualizado no arquivo `.env` na chave `VITE_HOST_API`.

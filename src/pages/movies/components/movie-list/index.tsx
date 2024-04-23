@@ -66,7 +66,7 @@ export const MovieList: React.FC<MovieListProps> = ({
         </thead>
         <tbody role="table">
           {data &&
-            data.items.map((item) => (
+            data.content.map((item) => (
               <tr role="table-item" key={item.id}>
                 <td style={{ width: "1%" }}>
                   <Text>{item.id}</Text>
@@ -78,13 +78,13 @@ export const MovieList: React.FC<MovieListProps> = ({
                   <Text>{item.title}</Text>
                 </td>
                 <td style={{ width: "1%" }}>
-                  <Text>{item.winner === "true" ? "Yes" : "No"}</Text>
+                  <Text>{item.winner ? "Yes" : "No"}</Text>
                 </td>
               </tr>
             ))}
           <tr>
             <td colSpan={4} style={{ backgroundColor: "#eceff1" }}>
-              <Pagination pageCount={data?.pages ?? 1} perPage={perPage} />
+              <Pagination pageCount={data?.totalPages ?? 1} perPage={perPage} />
             </td>
           </tr>
         </tbody>
