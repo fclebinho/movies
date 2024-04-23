@@ -9,8 +9,6 @@ const MoviesPage: React.FC = () => {
 
   if (error) return "An error has occurred: " + error.message;
 
-  console.log(data);
-
   return (
     <MovieList
       data={data}
