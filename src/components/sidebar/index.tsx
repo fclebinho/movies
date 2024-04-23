@@ -7,9 +7,6 @@ export const Sidebar: React.FC<
 > = (props) => {
   const location = useLocation();
 
-  console.log("/", location.pathname.endsWith("/"));
-  console.log("movies", location.pathname.endsWith("movies"));
-
   return (
     <Navbar {...props}>
       <NavbarItem

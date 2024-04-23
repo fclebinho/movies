@@ -1,3 +1,5 @@
+![Workflow](https://github.com/fclebinho/movies/actions/workflows/node.js.yml/badge.svg)
+
 # Movies
 
 Este projeto serve de apresentação de habilidades na construção de aplicativo web utilizando o [React](https://react.dev/) com [Vite](https://vitejs.dev/).
