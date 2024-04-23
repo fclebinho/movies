@@ -22,22 +22,6 @@ describe("Multiple Winners Component", () => {
     expect(screen).toBeTruthy();
   });
 
-  describe("while loading", () => {
-    beforeEach(() => {
-      vi.mocked(useFetchWinners).mockReturnValue({
-        isPending: true,
-        error: null,
-        data: undefined,
-      });
-    });
-
-    it("renders a loader", async () => {
-      render(<MultipleWinners />);
-
-      expect(await screen.findAllByText("Loading..."));
-    });
-  });
-
   describe("with a error", () => {
     beforeEach(() => {
       vi.mocked(useFetchWinners).mockReturnValue({

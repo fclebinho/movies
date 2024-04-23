@@ -27,22 +27,6 @@ describe("Top Studios Component", () => {
     expect(screen).toBeTruthy();
   });
 
-  describe("while loading", () => {
-    beforeEach(() => {
-      vi.mocked(useFetchStudios).mockReturnValue({
-        isPending: true,
-        error: null,
-        data: undefined,
-      });
-    });
-
-    it("renders a loader", async () => {
-      render(<TopStudios />);
-
-      expect(await screen.findAllByText("Loading..."));
-    });
-  });
-
   describe("with a error", () => {
     beforeEach(() => {
       vi.mocked(useFetchStudios).mockReturnValue({

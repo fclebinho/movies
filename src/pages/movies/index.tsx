@@ -5,9 +5,7 @@ import { useFetchPaginatedMovies } from "../../hooks/fetch-paginated-movies";
 
 const MoviesPage: React.FC = () => {
   const perPageCount = import.meta.env.VITE_PER_PAGE as string;
-  const { isPending, error, data } = useFetchPaginatedMovies(perPageCount);
-
-  if (isPending) return "Loading...";
+  const { error, data } = useFetchPaginatedMovies(perPageCount);
 
   if (error) return "An error has occurred: " + error.message;
 

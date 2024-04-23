@@ -6,9 +6,7 @@ import { useFetchStudios } from "../../../../hooks/fetch-studios";
 const TopStudios: React.FC<
   DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = (props) => {
-  const { isPending, error, data } = useFetchStudios();
-
-  if (isPending) return "Loading...";
+  const { error, data } = useFetchStudios();
 
   if (error) return "An error has occurred: " + error.message;
 

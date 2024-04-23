@@ -6,9 +6,7 @@ import { useFetchProducers } from "../../../../hooks/fetch-producers";
 const ProducersPanel: React.FC<
   DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = (props) => {
-  const { isPending, error, data } = useFetchProducers();
-
-  if (isPending) return "Loading...";
+  const { error, data } = useFetchProducers();
 
   if (error) return "An error has occurred: " + error.message;
 

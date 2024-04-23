@@ -22,22 +22,6 @@ describe("Producers Panel Component", () => {
     expect(screen).toBeTruthy();
   });
 
-  describe("while loading", () => {
-    beforeEach(() => {
-      vi.mocked(useFetchProducers).mockReturnValue({
-        isPending: true,
-        error: null,
-        data: undefined,
-      });
-    });
-
-    it("renders a loader", async () => {
-      render(<ProducersPanel />);
-
-      expect(await screen.findAllByText("Loading..."));
-    });
-  });
-
   describe("with a error", () => {
     beforeEach(() => {
       vi.mocked(useFetchProducers).mockReturnValue({

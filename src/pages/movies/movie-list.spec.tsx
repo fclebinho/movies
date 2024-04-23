@@ -27,26 +27,6 @@ describe("Movie List Page", () => {
     expect(screen).toBeTruthy();
   });
 
-  describe("while loading", () => {
-    beforeEach(() => {
-      vi.mocked(useFetchPaginatedMovies).mockReturnValue({
-        isPending: true,
-        error: null,
-        data: undefined,
-      });
-    });
-
-    it("renders a loader", async () => {
-      render(
-        <Wrapper>
-          <MoviesPage />
-        </Wrapper>
-      );
-
-      expect(await screen.findAllByText("Loading..."));
-    });
-  });
-
   describe("with a error", () => {
     beforeEach(() => {
       vi.mocked(useFetchPaginatedMovies).mockReturnValue({

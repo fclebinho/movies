@@ -7,9 +7,7 @@ import { useFetchWinningFilms } from "../../../../hooks/fetch-winning-films";
 const MovieWinners: React.FC<
   DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = (props) => {
-  const { isPending, error, data } = useFetchWinningFilms();
-
-  if (isPending) return "Loading...";
+  const { error, data } = useFetchWinningFilms();
 
   if (error) return "An error has occurred: " + error.message;
 

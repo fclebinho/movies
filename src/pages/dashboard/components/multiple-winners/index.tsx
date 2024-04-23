@@ -7,9 +7,7 @@ import { useFetchWinners } from "../../../../hooks/fetch-winners";
 export const MultipleWinners: React.FC<
   DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = (props) => {
-  const { isPending, error, data } = useFetchWinners();
-
-  if (isPending) return "Loading...";
+  const { error, data } = useFetchWinners();
 
   if (error) return "An error has occurred: " + error.message;
 

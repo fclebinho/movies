@@ -98,7 +98,21 @@ export const getStudios = async () => {
     `${import.meta.env.VITE_HOST_API}/movies?projection=studios-with-win-count`,
     {}
   )
-    .then((res) => res.json().then((res) => res.studios as Studio[]))
+    .then((res) =>
+      res.json().then((res) => {
+        const list = res.studios as Studio[];
+
+        if (list.length > 3) {
+          const itens = list
+            .sort((a, b) => (a.winCount < b.winCount ? 1 : -1))
+            .slice(0, 3);
+
+          return itens;
+        }
+
+        return list;
+      })
+    )
     .catch(() => []);
 };
 
@@ -110,5 +124,5 @@ export const getProducers = async () => {
     {}
   )
     .then((res) => res.json().then((res) => res as ProducerResponse))
-    .catch(() => []);
+    .catch(() => ({ min: [], max: [] } as ProducerResponse));
 };
