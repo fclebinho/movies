@@ -75,8 +75,6 @@ export const getPaginatedMovies = async (filters: string) => {
 export const getWinningFilms = async (filters: string) => {
   return getMovies(filters)
     .then((res) => {
-      console.log(res);
-
       return res as Movie[];
     })
     .catch(() => []);
@@ -100,12 +98,12 @@ export const getStudios = async () => {
   )
     .then((res) =>
       res.json().then((res) => {
-        const list = res.studios as Studio[];
+        const list = (res.studios as Studio[]).sort((a, b) =>
+          a.winCount < b.winCount ? 1 : -1
+        );
 
         if (list.length > 3) {
-          const itens = list
-            .sort((a, b) => (a.winCount < b.winCount ? 1 : -1))
-            .slice(0, 3);
+          const itens = list.slice(0, 3);
 
           return itens;
         }
@@ -113,7 +111,7 @@ export const getStudios = async () => {
         return list;
       })
     )
-    .catch(() => []);
+    .catch(() => [] as Studio[]);
 };
 
 export const getProducers = async () => {
