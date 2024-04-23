@@ -1,5 +1,5 @@
 import React from "react";
-import Select from "../select";
+import Select from "../../../../components/select";
 import { useSearchParams } from "react-router-dom";
 
 const InputFilterWinner: React.FC<

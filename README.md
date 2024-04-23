@@ -1,30 +1,13 @@
-# React + TypeScript + Vite
+# Movies
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto serve de apresentação de habilidades na construção de aplicativo web utilizando o [React](https://react.dev/) com [Vite](https://vitejs.dev/).
 
-Currently, two official plugins are available:
+Estão sendo aplicado a este projeto os seguintes recursos:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React Testing Library](https://testing-library.com) em conjunto com [Vitest](https://vitest.dev) para criação de testes unitários.
+- [URL State](https://www.linkedin.com/pulse/entendendo-diferen%C3%A7a-entre-url-state-e-hook-em-react-lucas-qayzf) O URL State refere-se ao armazenamento de estados na própria URL da página. Isso é comumente feito usando a API URLSearchParams, que permite manipular os parâmetros da URL, utilizado para gerenciar o estado dos filtros.
+- [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview) Facilita muito a busca, o armazenamento em cache, a sincronização e a atualização do estado do servidor na aplicação.
 
-## Expanding the ESLint configuration
+## Contribuindo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [Como o projeto está estruturado?](./STRUCTURE.md)

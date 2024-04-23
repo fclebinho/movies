@@ -2,8 +2,8 @@ import React, { DetailedHTMLProps } from "react";
 import { Card, CardTitle } from "../../../../components/card";
 import { Text } from "../../../../components/text";
 import Pagination from "../../../../components/pagination";
-import InputFilterYear from "../../../../components/input-filter-year";
-import InputFilterWinner from "../../../../components/input-filter-winner";
+import InputFilterYear from "../input-filter-year";
+import InputFilterWinner from "../input-filter-winner";
 import { PaginatedMovies } from "../../../../services/api";
 
 interface MovieListProps

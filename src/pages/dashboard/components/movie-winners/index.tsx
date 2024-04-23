@@ -1,7 +1,7 @@
 import React, { DetailedHTMLProps } from "react";
 import { Card, CardTitle } from "../../../../components/card";
 import { Text } from "../../../../components/text";
-import SearchYear from "../../../../components/search-year";
+import SearchYear from "./components/search-year";
 import { useFetchWinningFilms } from "../../../../hooks/fetch-winning-films";
 
 const MovieWinners: React.FC<

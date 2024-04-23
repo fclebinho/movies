@@ -1,32 +1,8 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { screen } from "@testing-library/react";
 import render from "../../tests/utils";
 import Pagination from ".";
 import { Wrapper } from "../../tests/utils/wrapper";
-import { useState } from "react";
-
-let mockSearchParam = "";
-
-vi.mock("react-router-dom", async () => {
-  const mod = await vi.importActual<typeof import("react-router-dom")>(
-    "react-router-dom"
-  );
-  return {
-    ...mod,
-    useSearchParams: () => {
-      const [params, setParams] = useState(
-        new URLSearchParams(mockSearchParam)
-      );
-      return [
-        params,
-        (newParams: string) => {
-          mockSearchParam = newParams;
-          setParams(new URLSearchParams(newParams));
-        },
-      ];
-    },
-  };
-});
 
 describe("Pagination Component", () => {
   it("Should render component", () => {
@@ -52,17 +28,4 @@ describe("Pagination Component", () => {
     expect(screen.getByText("4"));
     expect(screen.getByText("5"));
   });
-
-  // it("should add _page in searchParams on pagination button click", () => {
-  //   const { user } = render(
-  //     <Wrapper>
-  //       <Pagination pageCount={3} perPage={5} />
-  //     </Wrapper>
-  //   );
-  //
-  //   const button = screen.getByTestId("pagination-item-2");
-  //   user.click(button);
-  //
-  //   expect(mockSearchParam).toContain("_page=2&_per_page=5");
-  // });
 });

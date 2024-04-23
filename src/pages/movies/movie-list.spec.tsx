@@ -14,7 +14,6 @@ describe("Movie List Page", () => {
       isPending: false,
       error: null,
       data: mock.paginatedMovies,
-      perPage: "5",
     });
   });
 
@@ -34,7 +33,6 @@ describe("Movie List Page", () => {
         isPending: true,
         error: null,
         data: undefined,
-        perPage: "5",
       });
     });
 
@@ -55,7 +53,6 @@ describe("Movie List Page", () => {
         isPending: false,
         error: Error("testing..."),
         data: undefined,
-        perPage: "5",
       });
     });
 

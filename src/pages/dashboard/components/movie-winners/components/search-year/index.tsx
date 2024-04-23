@@ -1,7 +1,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
-import { Input } from "../input";
-import ButtonIcon from "../button-icon";
+import { Input } from "../../../../../../components/input";
+import ButtonIcon from "../../../../../../components/button-icon";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";

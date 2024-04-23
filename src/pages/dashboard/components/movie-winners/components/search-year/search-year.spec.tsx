@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { screen } from "@testing-library/react";
-import render from "../../tests/utils";
+import render from "../../../../../../tests/utils";
 import SearchYear from ".";
-import { Wrapper } from "../../tests/utils/wrapper";
+import { Wrapper } from "../../../../../../tests/utils/wrapper";
 
 describe("Search Year Component", () => {
   it("Should render component", () => {
