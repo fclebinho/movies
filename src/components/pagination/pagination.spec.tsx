@@ -61,7 +61,7 @@ describe("Pagination Component", () => {
         <Pagination pageCount={5} onPageChange={handlePageChange} />
       );
 
-      await user.click(screen.getByTestId("pagination-item-4"));
+      await user.click(screen.getByTestId("pagination-item-last"));
 
       expect(page).toBe(4);
     });
