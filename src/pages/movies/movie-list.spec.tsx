@@ -36,7 +36,7 @@ describe("Movie List Page", () => {
       });
     });
 
-    it("", async () => {
+    it("Should display an error message when the result is an error", async () => {
       render(
         <Wrapper>
           <MoviesPage />

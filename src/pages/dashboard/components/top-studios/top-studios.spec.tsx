@@ -36,7 +36,7 @@ describe("Top Studios Component", () => {
       });
     });
 
-    it("", async () => {
+    it("Should display an error message when the result is an error", async () => {
       render(<TopStudios />);
 
       expect(await screen.findAllByText("An error has occurred: testing..."));

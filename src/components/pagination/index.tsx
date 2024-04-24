@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PaginationButton from "./components/pagination-button";
 import {
   TiMediaFastForward,
@@ -6,7 +6,6 @@ import {
   TiMediaPlayReverse,
   TiMediaRewind,
 } from "react-icons/ti";
-import { useSearchParams } from "react-router-dom";
 
 interface PaginationProps
   extends React.DetailedHTMLProps<
@@ -14,39 +13,28 @@ interface PaginationProps
     HTMLDivElement
   > {
   pageCount: number;
-  perPage: number;
+  initialPage?: number;
+  onPageChange?: (value: number) => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
   pageCount,
-  perPage,
+  initialPage = 0,
+  onPageChange,
   ...rest
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [seletedPage, setSeletedPage] = useState<number>(initialPage);
 
-  const handlePageClick = (value: number) => {
-    setSearchParams((state) => {
-      state.set("page", String(value));
-      state.set("size", String(perPage));
-
-      return state;
-    });
+  const handlePageClick = (page: number) => {
+    setSeletedPage(page);
+    onPageChange && onPageChange(page);
   };
 
-  const setPageNumber = (page: number) =>
-    setSearchParams((state) => {
-      state.set("page", String(page));
-
-      return state;
-    });
-
-  const getPageNumber = () => Number(searchParams.get("page") ?? 1);
-
   const handlePagePriorClick = () =>
-    getPageNumber() > 1 && setPageNumber(getPageNumber() - 1);
+    seletedPage > 0 && handlePageClick(seletedPage - 1);
 
   const handlePageNextClick = () =>
-    getPageNumber() < pageCount && setPageNumber(getPageNumber() + 1);
+    seletedPage < pageCount - 1 && handlePageClick(seletedPage + 1);
 
   return (
     <div
@@ -58,10 +46,16 @@ const Pagination: React.FC<PaginationProps> = ({
       }}
       data-testid="table-pagination"
     >
-      <PaginationButton onClick={() => setPageNumber(1)}>
+      <PaginationButton
+        onClick={() => handlePageClick(0)}
+        data-testid="pagination-item-first"
+      >
         <TiMediaRewind />
       </PaginationButton>
-      <PaginationButton onClick={handlePagePriorClick}>
+      <PaginationButton
+        onClick={handlePagePriorClick}
+        data-testid="pagination-item-prior"
+      >
         <TiMediaPlayReverse />
       </PaginationButton>
       {[...Array(pageCount)].map((_, index) => {
@@ -70,19 +64,25 @@ const Pagination: React.FC<PaginationProps> = ({
         return (
           <PaginationButton
             key={index}
-            active={getPageNumber() === itemNumber}
-            onClick={() => handlePageClick(itemNumber)}
-            data-testid={`pagination-item-${itemNumber}`}
+            active={seletedPage === index}
+            onClick={() => handlePageClick(index)}
+            data-testid={`pagination-item-${index}`}
           >
             {itemNumber}
           </PaginationButton>
         );
       })}
 
-      <PaginationButton onClick={handlePageNextClick}>
+      <PaginationButton
+        onClick={handlePageNextClick}
+        data-testid="pagination-item-next"
+      >
         <TiMediaPlay />
       </PaginationButton>
-      <PaginationButton onClick={() => setPageNumber(pageCount)}>
+      <PaginationButton
+        onClick={() => handlePageClick(pageCount - 1)}
+        data-testid="pagination-item-last"
+      >
         <TiMediaFastForward />
       </PaginationButton>
     </div>

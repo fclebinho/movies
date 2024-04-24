@@ -1,35 +1,34 @@
-import React, { useState } from "react";
-import { debounce } from "lodash";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React from "react";
 import { Input, InputProps } from "../../../../components/input";
-import { useSearchParams } from "react-router-dom";
 
-const InputFilterYear: React.FC<InputProps> = (props) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [value, setValue] = useState<string | null>(searchParams.get("year"));
+interface InputFilterYearProps extends Omit<InputProps, "onChange"> {
+  onChange(value: string | null): void;
+}
 
-  const _handler = (value: string) => {
-    setSearchParams((state) => {
-      value ? state.set("year", value) : state.delete("year");
+export const InputFilterYear: React.FC<InputFilterYearProps> = ({
+  onChange,
+  ...rest
+}) => {
+  const [inputValue, setInputValue] = React.useState("");
 
-      return state;
-    });
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
   };
 
-  const debouncedHandler = debounce(_handler, 1000);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-    debouncedHandler(e.target.value);
-  };
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      onChange(inputValue.trim() !== "" ? inputValue : null);
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [inputValue, 500]);
 
   return (
     <Input
-      type="number"
-      value={value ?? ""}
-      {...props}
-      onChange={handleChange}
+      {...rest}
+      type="text"
+      value={inputValue}
+      onChange={handleInputChange}
     />
   );
 };
-
-export default InputFilterYear;

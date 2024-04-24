@@ -36,7 +36,7 @@ describe("Movie Winners Component", () => {
       });
     });
 
-    it("", async () => {
+    it("Should display an error message when the result is an error", async () => {
       render(<MovieWinners />);
 
       expect(await screen.findAllByText("An error has occurred: testing..."));
