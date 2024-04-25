@@ -64,7 +64,7 @@ const Pagination: React.FC<PaginationProps> = ({
         return (
           <PaginationButton
             key={index}
-            active={seletedPage === index}
+            active={initialPage === index}
             onClick={() => handlePageClick(index)}
             data-testid={`pagination-item-${index}`}
           >

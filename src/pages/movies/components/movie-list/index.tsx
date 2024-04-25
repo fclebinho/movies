@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { DetailedHTMLProps } from "react";
 import { Card, CardTitle } from "../../../../components/card";
 import { Text } from "../../../../components/text";
 import Pagination from "../../../../components/pagination";
 import { InputFilterYear } from "../input-filter-year";
-import InputFilterWinner from "../input-filter-winner";
 import { PaginatedMovies } from "../../../../services/api";
 import { useSearchParams } from "react-router-dom";
+import Select from "../../../../components/select";
 
 interface MovieListProps
   extends DetailedHTMLProps<
@@ -22,7 +21,7 @@ export const MovieList: React.FC<MovieListProps> = ({
   perPage,
   ...rest
 }) => {
-  const [_, setParams] = useSearchParams({
+  const [params, setParams] = useSearchParams({
     page: "0",
     size: String(perPage),
   });
@@ -37,7 +36,27 @@ export const MovieList: React.FC<MovieListProps> = ({
 
   const handleChangeYearFilter = (value: string) => {
     setParams((state) => {
-      value ? state.set("year", value) : state.delete("year");
+      if (value) {
+        state.set("year", value);
+        state.set("page", "0");
+      } else {
+        state.delete("year");
+      }
+
+      return state;
+    });
+  };
+
+  const handleChangeWinnerFilter = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setParams((state) => {
+      if (e.target.value) {
+        state.set("page", "0");
+        state.set("winner", e.target.value);
+      } else {
+        state.delete("winner");
+      }
 
       return state;
     });
@@ -81,11 +100,14 @@ export const MovieList: React.FC<MovieListProps> = ({
                 }}
               >
                 <Text fontWeight="bold">Winner?</Text>
-                <InputFilterWinner data-testid="search_by_winner">
+                <Select
+                  data-testid="search_by_winner"
+                  onChange={handleChangeWinnerFilter}
+                >
                   <option value="">Yes/No</option>
                   <option value="true">Yes</option>
                   <option value="false">No</option>
-                </InputFilterWinner>
+                </Select>
               </div>
             </th>
           </tr>
@@ -111,6 +133,7 @@ export const MovieList: React.FC<MovieListProps> = ({
           <tr>
             <td colSpan={4} style={{ backgroundColor: "#eceff1" }}>
               <Pagination
+                initialPage={Number(params.get("page"))}
                 pageCount={data?.totalPages ?? 1}
                 onPageChange={handlePageChange}
               />
